@@ -17,9 +17,12 @@ import kotlinx.coroutines.*
 
 class CountriesToolbarViewImpl(
     private val root: ViewGroup,
-    private val coroutineScope: CoroutineScope,
     attachToRoot: Boolean = true
 ) : BaseMviView<Model, Event>() {
+
+    private val coroutineScope by lazy {
+        CoroutineScope(Dispatchers.Main)
+    }
 
     private var searchJob: Job? = null
 

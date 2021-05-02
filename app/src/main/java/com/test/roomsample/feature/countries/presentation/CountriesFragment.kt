@@ -47,8 +47,7 @@ class CountriesFragment : BaseFragment(R.layout.screen_countries) {
     override fun prepareUi() {
 
         CountriesToolbarViewImpl(
-            root = viewBinding.toolbarContainer,
-            coroutineScope = lifecycleScope
+            root = viewBinding.toolbarContainer
         ).bind(store = store, viewConnections = CountriesToolbarConnections)
 
         CountriesMainViewImpl(
