@@ -1,9 +1,8 @@
 package com.test.roomsample.launcher
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.test.roomsample.R
-import com.test.roomsample.di.AppComponent
 import com.test.roomsample.launcher.di.AppScreenComponent
 import com.test.roomsample.library.coreui.navigation.Screens
 import me.aartikov.alligator.NavigationContext
@@ -24,13 +23,13 @@ class AppActivity : AppCompatActivity() {
             .inject(app = this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.app_screen)
+
+        navigator.reset(Screens.CountryList)
     }
 
     override fun onResumeFragments() {
         super.onResumeFragments()
         bindNavigationContext()
-
-        navigator.reset(Screens.CountryList)
     }
 
     private fun bindNavigationContext() {
