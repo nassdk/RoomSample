@@ -46,8 +46,11 @@ class CountriesStoreFactory @Inject constructor(
 
         override suspend fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
-                is Intent.CountrySelected -> navigator.goForward(Screens.Flow(countryId = intent.countryId))
-                is Intent.SearchQueryChange -> filterCountriesByQuery(query = intent.query, countries = getState().allCountries)
+                is Intent.CountrySelected -> navigator.reset(Screens.Flow(countryId = intent.countryId))
+                is Intent.SearchQueryChange -> filterCountriesByQuery(
+                    query = intent.query,
+                    countries = getState().allCountries
+                )
             }
         }
 
