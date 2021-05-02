@@ -17,8 +17,8 @@ import kotlinx.coroutines.*
 
 class CountriesToolbarViewImpl(
     private val root: ViewGroup,
-    private val coroutinesContext: CoroutineScope,
-    attachToRoot: Boolean = false
+    private val coroutineScope: CoroutineScope,
+    attachToRoot: Boolean = true
 ) : BaseMviView<Model, Event>() {
 
     private var searchJob: Job? = null
@@ -44,6 +44,8 @@ class CountriesToolbarViewImpl(
                 }
             }
         }
+
+        initSearchMenu()
     }
 
     private fun initSearchMenu() {
@@ -61,7 +63,7 @@ class CountriesToolbarViewImpl(
         searchView.maxWidth = android.R.attr.width
 
         searchEditText.run {
-            setTextColor(Color.BLACK)
+            setTextColor(Color.WHITE)
             setHintTextColor(Color.GRAY)
             setTextSize(
                 TypedValue.COMPLEX_UNIT_PX,
@@ -85,8 +87,8 @@ class CountriesToolbarViewImpl(
 
                     searchJob?.cancel()
 
-                    searchJob = coroutinesContext.launch(Dispatchers.Main) {
-                        delay(500)
+                    searchJob = coroutineScope.launch(Dispatchers.Main) {
+                        delay(750)
                         dispatch(event = Event.Search(query = newText.orEmpty()))
                     }
 
