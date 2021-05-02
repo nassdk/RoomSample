@@ -37,6 +37,7 @@ class CountriesMainViewImpl(
 
     override val renderer: ViewRenderer<Model> = diff {
         diff(get = Model::countries, set = ::applyCountries)
+        diff(get = Model::filteredCountries, set = ::applyCountries)
         diff(get = Model::loading, set = ::updateLoadingState)
     }
 

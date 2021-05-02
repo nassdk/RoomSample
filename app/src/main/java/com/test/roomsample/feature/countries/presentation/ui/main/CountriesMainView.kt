@@ -9,7 +9,8 @@ interface CountriesMainView : MviView<Model, Event> {
 
     data class Model(
         val loading: Boolean,
-        val countries: List<CountryModel>
+        val countries: List<CountryModel>,
+        val filteredCountries: List<CountryModel>
     )
 
     sealed class Event {

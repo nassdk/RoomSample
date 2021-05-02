@@ -9,7 +9,11 @@ import com.test.roomsample.library.coreui.mvi.ViewConnections
 object CountriesConnections : ViewConnections<State, Intent, Model, Event> {
 
     override val stateToModel: (State) -> Model = { state ->
-        Model(loading = state.loading, countries = state.countries)
+        Model(
+            loading = state.loading,
+            countries = state.allCountries,
+            filteredCountries = state.filteredCountries
+        )
     }
 
     override val eventToIntent: (Event) -> Intent = { event ->

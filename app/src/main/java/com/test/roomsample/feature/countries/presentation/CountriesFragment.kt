@@ -48,7 +48,7 @@ class CountriesFragment : BaseFragment(R.layout.screen_countries) {
 
         CountriesToolbarViewImpl(
             root = viewBinding.toolbarContainer,
-            coroutinesContext = lifecycleScope
+            coroutineScope = lifecycleScope
         ).bind(store = store, viewConnections = CountriesToolbarConnections)
 
         CountriesMainViewImpl(

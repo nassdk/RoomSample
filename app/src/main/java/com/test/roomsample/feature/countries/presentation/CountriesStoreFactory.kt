@@ -47,7 +47,7 @@ class CountriesStoreFactory @Inject constructor(
         override suspend fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
                 is Intent.CountrySelected -> navigator.goForward(Screens.Flow(countryId = intent.countryId))
-                is Intent.SearchQueryChange -> filterCountriesByQuery(query = intent.query, countries = getState().countries)
+                is Intent.SearchQueryChange -> filterCountriesByQuery(query = intent.query, countries = getState().allCountries)
             }
         }
 
@@ -86,8 +86,8 @@ class CountriesStoreFactory @Inject constructor(
             when (result) {
                 Result.Loading -> copy(loading = true)
                 Result.StopLoading -> copy(loading = false)
-                is Result.CountriesLoaded -> copy(countries = result.countries)
-                is Result.CountriesFilteredByQuery -> copy(countries = result.countries)
+                is Result.CountriesLoaded -> copy(allCountries = result.countries)
+                is Result.CountriesFilteredByQuery -> copy(filteredCountries = result.countries)
             }
     }
 

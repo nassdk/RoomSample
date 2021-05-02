@@ -12,7 +12,8 @@ interface CountriesStore : Store<Intent, State, Label> {
     }
 
     data class State(
-        val countries: List<CountryModel> = emptyList(),
+        val allCountries: List<CountryModel> = emptyList(),
+        val filteredCountries: List<CountryModel> = emptyList(),
         val loading: Boolean = false
     )
 
