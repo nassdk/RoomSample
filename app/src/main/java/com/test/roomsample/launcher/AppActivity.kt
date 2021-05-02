@@ -14,12 +14,9 @@ import javax.inject.Inject
 
 class AppActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var navigator: Navigator
-    @Inject
-    lateinit var navigationFactory: NavigationFactory
-    @Inject
-    lateinit var navigationContextBinder: NavigationContextBinder
+    @Inject lateinit var navigator: Navigator
+    @Inject lateinit var navigationFactory: NavigationFactory
+    @Inject lateinit var navigationContextBinder: NavigationContextBinder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppScreenComponent
