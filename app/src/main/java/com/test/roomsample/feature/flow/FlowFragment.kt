@@ -8,7 +8,6 @@ import com.test.roomsample.library.coreui.navigation.ContainerIdProvider
 import com.test.roomsample.library.coreui.navigation.Screens
 import com.test.roomsample.library.coreui.tab.TabScreen
 import me.aartikov.alligator.*
-import me.aartikov.alligator.listeners.ScreenSwitchingListener
 import me.aartikov.alligator.navigationfactories.NavigationFactory
 import me.aartikov.alligator.screenswitchers.FragmentScreenSwitcher
 import javax.inject.Inject
@@ -36,7 +35,6 @@ class FlowFragment : BaseFragment(R.layout.screen_flow) {
     private val tabScreenMap = LinkedHashMap<Int, Screen>().apply {
         put(R.id.menu_main_bottom_nav_home, TabScreen(Screens.Teams))
         put(R.id.menu_main_bottom_nav_catalog, TabScreen(Screens.LiveScore))
-//        put(R.id.menu_main_bottom_nav_cart, TabScreen(CartScreens.Cart))
     }
 
     override fun invokeDi() {
@@ -85,7 +83,7 @@ class FlowFragment : BaseFragment(R.layout.screen_flow) {
         navigationContextBinder.bind(builder.build())
     }
 
-    private fun getTabScreen(tabId: Int): Screen = tabScreenMap.getValue(tabId)
+    private fun getTabScreen(tabId: Int) = tabScreenMap.getValue(tabId)
 
     private fun getTabId(screen: Screen): Int {
         for ((key, value) in tabScreenMap.entries) {
@@ -97,9 +95,7 @@ class FlowFragment : BaseFragment(R.layout.screen_flow) {
         return -1
     }
 
-    private fun onTabScreenSelected(tabScreen: Screen) {
-        navigator.switchTo(tabScreen)
-    }
+    private fun onTabScreenSelected(tabScreen: Screen) = navigator.switchTo(tabScreen)
 
     override fun onPause() {
         navigationContextBinder.unbind(requireActivity() as AppCompatActivity?)
