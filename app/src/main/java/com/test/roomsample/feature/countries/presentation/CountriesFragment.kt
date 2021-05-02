@@ -1,7 +1,6 @@
 package com.test.roomsample.feature.countries.presentation
 
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import com.arkivanov.mvikotlin.core.binder.BinderLifecycleMode
 import com.arkivanov.mvikotlin.core.lifecycle.asMviLifecycle
 import com.arkivanov.mvikotlin.extensions.coroutines.bind
@@ -62,5 +61,10 @@ class CountriesFragment : BaseFragment(R.layout.screen_countries) {
     override fun onDestroyView() {
         _viewBinding = null
         super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        store.dispose()
     }
 }
