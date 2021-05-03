@@ -10,21 +10,18 @@ import dagger.Provides
 import me.aartikov.alligator.Navigator
 
 @Module
-class CountriesModule {
+object CountriesModule {
 
-    companion object {
-
-        @Provides
-        @ScreenScope
-        fun provideCountriesStoreFactory(
-            navigator: Navigator,
-            loadCountriesUseCase: LoadCountriesUseCase,
-            errorHandler: UiErrorHandler
-        ) = CountriesStoreFactory(
-            storeFactory = DefaultStoreFactory,
-            navigator = navigator,
-            loadCountriesUseCase = loadCountriesUseCase,
-            errorHandler = errorHandler
-        ).create()
-    }
+    @Provides
+    @ScreenScope
+    fun provideCountriesStoreFactory(
+        navigator: Navigator,
+        loadCountriesUseCase: LoadCountriesUseCase,
+        errorHandler: UiErrorHandler
+    ) = CountriesStoreFactory(
+        storeFactory = DefaultStoreFactory,
+        navigator = navigator,
+        loadCountriesUseCase = loadCountriesUseCase,
+        errorHandler = errorHandler
+    ).create()
 }
