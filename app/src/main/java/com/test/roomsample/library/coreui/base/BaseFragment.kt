@@ -15,9 +15,9 @@ import com.test.roomsample.library.coreui.util.mapNotNull
 
 abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
 
-    open fun invokeDi() {}
-    open fun initBindings() {}
-    open fun prepareUi() {}
+    open fun invokeDi() = Unit
+    open fun initBindings() = Unit
+    open fun prepareUi() = Unit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         invokeDi()
