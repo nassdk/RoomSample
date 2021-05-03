@@ -34,8 +34,8 @@ class FlowActivity : BaseActivity(R.layout.screen_flow) {
     private val screen by lazy { screenResolver.getScreen<Screens.Flow>(this) }
 
     private val tabScreenMap = LinkedHashMap<Int, Screen>().apply {
-        put(R.id.menu_main_bottom_nav_home, TabScreen(Screens.Teams))
         put(R.id.menu_main_bottom_nav_catalog, TabScreen(Screens.LiveScore))
+        put(R.id.menu_main_bottom_nav_home, TabScreen(Screens.Teams))
     }
 
     override fun invokeDi() {
