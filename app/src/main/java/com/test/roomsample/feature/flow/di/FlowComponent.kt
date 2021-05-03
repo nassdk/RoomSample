@@ -1,17 +1,17 @@
-package com.test.roomsample.feature.flow
+package com.test.roomsample.feature.flow.di
 
 import android.app.Activity
+import com.test.roomsample.feature.flow.DaggerFlowComponent
+import com.test.roomsample.feature.flow.FlowActivity
 import com.test.roomsample.library.coreapi.app.AppProvider
 import com.test.roomsample.library.coreapi.app.AppProviderHolder
 import com.test.roomsample.library.coreui.di.ScreenScope
 import dagger.Component
 
 @ScreenScope
-@Component(
-    dependencies = [AppProvider::class],
-)
+@Component(dependencies = [AppProvider::class])
 interface FlowComponent {
-    fun inject(main: FlowFragment)
+    fun inject(main: FlowActivity)
 
     @Component.Builder
     interface Builder {

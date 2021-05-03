@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RoomSample">
+        <activity android:name=".feature.flow.FlowActivity"/>
         <activity android:name=".launcher.AppActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

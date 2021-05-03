@@ -1,9 +1,9 @@
 package com.test.roomsample.feature.flow
 
-import androidx.appcompat.app.AppCompatActivity
 import com.test.roomsample.R
 import com.test.roomsample.databinding.ScreenFlowBinding
-import com.test.roomsample.library.coreui.base.BaseFragment
+import com.test.roomsample.feature.flow.di.FlowComponent
+import com.test.roomsample.library.coreui.base.BaseActivity
 import com.test.roomsample.library.coreui.navigation.ContainerIdProvider
 import com.test.roomsample.library.coreui.navigation.Screens
 import com.test.roomsample.library.coreui.tab.TabScreen
@@ -12,10 +12,11 @@ import me.aartikov.alligator.navigationfactories.NavigationFactory
 import me.aartikov.alligator.screenswitchers.FragmentScreenSwitcher
 import javax.inject.Inject
 
-class FlowFragment : BaseFragment(R.layout.screen_flow) {
+class FlowActivity : BaseActivity(R.layout.screen_flow) {
 
     private var _viewBinding: ScreenFlowBinding? = null
-    private val viewBinding: ScreenFlowBinding get() = _viewBinding!!
+    private val viewBinding: ScreenFlowBinding
+        get() = _viewBinding!!
 
     @Inject lateinit var navigator: Navigator
     @Inject lateinit var navigationFactory: NavigationFactory
@@ -25,8 +26,8 @@ class FlowFragment : BaseFragment(R.layout.screen_flow) {
     private val screenSwitcher by lazy {
         FragmentScreenSwitcher(
             navigationFactory,
-            requireActivity().supportFragmentManager,
-            R.id.main_container
+            supportFragmentManager,
+            R.id.flowContainer
         )
     }
 
@@ -40,15 +41,13 @@ class FlowFragment : BaseFragment(R.layout.screen_flow) {
     override fun invokeDi() {
 
         FlowComponent
-            .create(requireActivity())
+            .create(this)
             .inject(this)
     }
 
-    override fun initBindings() {
-        _viewBinding = ScreenFlowBinding.bind(requireView())
-    }
-
     override fun prepareUi() {
+
+        _viewBinding = ScreenFlowBinding.bind(findViewById(R.id.flow_root_container))
 
         viewBinding.mainBottomNavBar.apply {
             setOnNavigationItemSelectedListener {
@@ -60,15 +59,15 @@ class FlowFragment : BaseFragment(R.layout.screen_flow) {
         navigator.switchTo(getTabScreen(tabScreenMap.keys.first()))
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onResumeFragments() {
+        super.onResumeFragments()
         bindNavigationContext()
     }
 
     private fun bindNavigationContext() {
 
         val builder =
-            NavigationContext.Builder(requireActivity() as AppCompatActivity, navigationFactory)
+            NavigationContext.Builder(this, navigationFactory)
                 .screenSwitcher(screenSwitcher)
                 .screenSwitchingListener { _, screenTo: Screen ->
                     val tabId = getTabId(screenTo)
@@ -98,12 +97,12 @@ class FlowFragment : BaseFragment(R.layout.screen_flow) {
     private fun onTabScreenSelected(tabScreen: Screen) = navigator.switchTo(tabScreen)
 
     override fun onPause() {
-        navigationContextBinder.unbind(requireActivity() as AppCompatActivity?)
+        navigationContextBinder.unbind(this)
         super.onPause()
     }
 
-    override fun onDestroyView() {
+    override fun onDestroy() {
         _viewBinding = null
-        super.onDestroyView()
+        super.onDestroy()
     }
 }
