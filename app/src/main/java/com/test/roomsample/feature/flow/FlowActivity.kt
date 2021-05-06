@@ -35,14 +35,8 @@ class FlowActivity : BaseActivity(R.layout.screen_flow) {
 
     private val tabScreenMap by lazy {
         LinkedHashMap<Int, Screen>().apply {
-            put(
-                R.id.menu_main_bottom_nav_catalog,
-                TabScreen(Screens.LiveScore(countryId = screen.countryId))
-            )
-            put(
-                R.id.menu_main_bottom_nav_home,
-                TabScreen(Screens.Teams(countryId = screen.countryId))
-            )
+            put(R.id.menu_main_bottom_nav_home, TabScreen(Screens.Teams(countryId = screen.countryId)))
+            put(R.id.menu_main_bottom_nav_catalog, TabScreen(Screens.LiveScore(countryId = screen.countryId)))
         }
     }
 
