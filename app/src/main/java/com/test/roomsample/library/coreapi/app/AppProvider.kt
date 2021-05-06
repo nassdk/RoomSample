@@ -3,6 +3,7 @@ package com.test.roomsample.library.coreapi.app
 import android.content.Context
 import com.test.roomsample.feature.countries.domain.CountriesUseCaseProvider
 import com.test.roomsample.feature.live.domain.LiveScoresUseCaseProvider
+import com.test.roomsample.feature.teams.domain.TeamsUseCaseProvider
 import com.test.roomsample.library.coreapi.common.CommonProvider
 import com.test.roomsample.library.coreapi.navigation.NavigationProvider
 import com.test.roomsample.library.coreapi.network.NetworkProvider
@@ -14,6 +15,7 @@ interface AppProvider
     NavigationProvider,
     CommonProvider,
     CountriesUseCaseProvider,
-    LiveScoresUseCaseProvider {
+    LiveScoresUseCaseProvider,
+    TeamsUseCaseProvider {
     fun context(): Context
 }

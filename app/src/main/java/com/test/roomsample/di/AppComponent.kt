@@ -4,6 +4,7 @@ import android.content.Context
 import com.test.roomsample.AppDelegate
 import com.test.roomsample.feature.countries.data.di.CountriesDataModule
 import com.test.roomsample.feature.live.data.di.LiveScoreDataModule
+import com.test.roomsample.feature.teams.data.di.TeamsDataModule
 import com.test.roomsample.library.coreapi.app.AppProvider
 import com.test.roomsample.library.coreimpl.common.di.CommonModule
 import com.test.roomsample.library.coreimpl.navigation.NavigationModule
@@ -20,7 +21,8 @@ import javax.inject.Singleton
         NavigationModule::class,
         CommonModule::class,
         CountriesDataModule::class,
-        LiveScoreDataModule::class
+        LiveScoreDataModule::class,
+        TeamsDataModule::class
     ]
 )
 interface AppComponent : AppProvider {
