@@ -7,6 +7,7 @@ import com.test.roomsample.feature.live.data.di.LiveScoreDataModule
 import com.test.roomsample.feature.teams.data.di.TeamsDataModule
 import com.test.roomsample.library.coreapi.app.AppProvider
 import com.test.roomsample.library.coreimpl.common.di.CommonModule
+import com.test.roomsample.library.coreimpl.database.di.RoomModule
 import com.test.roomsample.library.coreimpl.navigation.NavigationModule
 import com.test.roomsample.library.coreimpl.network.di.NetworkModule
 import dagger.BindsInstance
@@ -19,6 +20,7 @@ import javax.inject.Singleton
         AppModule::class,
         NetworkModule::class,
         NavigationModule::class,
+        RoomModule::class,
         CommonModule::class,
         CountriesDataModule::class,
         LiveScoreDataModule::class,
