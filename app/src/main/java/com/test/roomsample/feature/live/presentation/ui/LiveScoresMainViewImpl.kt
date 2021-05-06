@@ -24,7 +24,7 @@ class LiveScoresMainViewImpl(
     )
 
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
-        ListDelegationAdapter(lifeScoresDelegate())
+        ListDelegationAdapter(liveScoresDelegate())
     }
 
     init {
@@ -48,7 +48,7 @@ class LiveScoresMainViewImpl(
         viewBinding.progressContainer.visibility = if (loading) View.VISIBLE else View.GONE
     }
 
-    private fun lifeScoresDelegate() =
+    private fun liveScoresDelegate() =
         adapterDelegateViewBinding<LiveScoreMatchModel, LiveScoreMatchModel, ItemLiveScoreBinding>(
             { layoutInflater: LayoutInflater, parent: ViewGroup ->
                 ItemLiveScoreBinding.inflate(layoutInflater, parent, false)
